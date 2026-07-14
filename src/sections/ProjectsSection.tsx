@@ -1,16 +1,17 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useState, useCallback, useEffect } from 'react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import FadeIn from '../components/FadeIn'
-import { ExternalLink } from 'lucide-react'
+import { Play, X } from 'lucide-react'
 import dreamfirm1 from '../photos/dreamfirm1.jpeg'
 import kustard_story from '../photos/kustard_story.jpeg'
 import coffee from '../photos/coffee.jpeg'
+
 interface ProjectData {
   num: string
   category: string
   name: string
   description: string
-  videoUrl: string
+  videoSrc: string
   thumbnail: string
 }
 
@@ -20,7 +21,7 @@ const PROJECTS: ProjectData[] = [
     category: 'Client Project',
     name: 'CA Dreamfirm',
     description: '',
-    videoUrl: 'https://drive.google.com/file/d/1pTLtVgyK3zhL5tV9LEPPUm0LBLovBTgs/view?usp=drive_link',
+    videoSrc: '/videos/CA_Dreamfirm.mp4',
     thumbnail: dreamfirm1,
   },
   {
@@ -28,27 +29,121 @@ const PROJECTS: ProjectData[] = [
     category: 'Personal Project',
     name: 'Kustard story.final',
     description: 'Immersive digital storytelling through beautiful visuals.',
-    videoUrl: 'https://drive.google.com/file/d/1tFr491rL579t8cb72D6DycJE1TXqLhEJ/view?usp=drive_link',
+    videoSrc: '/videos/Kustard_story.final.mp4',
     thumbnail: kustard_story,
   },
   {
     num: '03',
     category: 'Brand Project',
-    name: 'Copy of Roasted Coffee ',
-    description: 'Copy of Roasted Coffee shoot.',
-    videoUrl: 'https://drive.google.com/file/d/1TiWO9E1VziU7GuI24TgnTgSC5B_i-5GO/view?usp=drive_link',
+    name: 'Roasted Coffee',
+    description: 'Roasted Coffee shoot.',
+    videoSrc: '/videos/Roasted_Coffee_shoot.mp4',
     thumbnail: coffee,
   },
 ]
+
+/* ═══════════════════════════════════════════════════════════
+   VIDEO MODAL — Cinematic fullscreen player
+   ═══════════════════════════════════════════════════════════ */
+
+function VideoModal({
+  project,
+  onClose,
+}: {
+  project: ProjectData
+  onClose: () => void
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  /* Lock body scroll when modal is open */
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [])
+
+  /* Close on Escape key */
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
+
+  return (
+    <motion.div
+      className="video-modal-backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+      onClick={onClose}
+    >
+      {/* Close button */}
+      <motion.button
+        className="video-modal-close"
+        onClick={onClose}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ delay: 0.15, duration: 0.25 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <X size={20} />
+      </motion.button>
+
+      {/* Project title */}
+      <motion.div
+        className="video-modal-title"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ delay: 0.1, duration: 0.3 }}
+      >
+        <span className="video-modal-num">{project.num}</span>
+        <span className="video-modal-name">{project.name}</span>
+      </motion.div>
+
+      {/* Video container */}
+      <motion.div
+        className="video-modal-container"
+        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, scale: 0.9, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 30 }}
+        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      >
+        <video
+          ref={videoRef}
+          className="video-modal-player"
+          src={project.videoSrc}
+          controls
+          autoPlay
+          playsInline
+          poster={project.thumbnail}
+        />
+      </motion.div>
+    </motion.div>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROJECT CARD
+   ═══════════════════════════════════════════════════════════ */
 
 function ProjectCard({
   project,
   index,
   totalCards,
+  onPlay,
 }: {
   project: ProjectData
   index: number
   totalCards: number
+  onPlay: (project: ProjectData) => void
 }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -56,7 +151,6 @@ function ProjectCard({
     offset: ['start end', 'start start'],
   })
 
-  // Scale down slightly as you scroll past — creates the "stack behind" effect
   const targetScale = 1 - (totalCards - 1 - index) * 0.04
   const scale = useTransform(scrollYProgress, [0, 1], [0.9, targetScale])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0.6, 1])
@@ -66,7 +160,6 @@ function ProjectCard({
       ref={cardRef}
       className="project-card-wrapper"
       style={{
-        // Each card sticks a bit lower so they peek above each other
         top: `calc(80px + ${index * 32}px)`,
       }}
     >
@@ -88,35 +181,31 @@ function ProjectCard({
         <div className="project-right">
           {/* View Project button — top right */}
           <div className="project-btn-row">
-            <a
-              href={project.videoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
               className="project-view-btn group"
+              onClick={() => onPlay(project)}
             >
-              <span>View Project</span>
-              <ExternalLink
-                size={15}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </a>
+              <Play size={14} className="transition-transform duration-300 group-hover:scale-110" />
+              <span>Watch Video</span>
+            </button>
           </div>
 
-          {/* Single thumbnail image */}
-          <div className="project-thumbnail">
+          {/* Thumbnail with play overlay */}
+          <div
+            className="project-thumbnail"
+            onClick={() => onPlay(project)}
+          >
             <img
               src={project.thumbnail}
               alt={`${project.name} thumbnail`}
               loading="lazy"
             />
-            Play overlay
-            {/* <div className="project-play-overlay">
-              <div className="project-play-icon"> */}
-            {/* <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M8 5.14v13.72a1 1 0 001.5.86l11.04-6.86a1 1 0 000-1.72L9.5 4.28a1 1 0 00-1.5.86z" fill="currentColor" />
-                </svg> */}
-            {/* </div>
-            </div> */}
+            {/* Play overlay */}
+            <div className="project-play-overlay">
+              <div className="project-play-icon">
+                <Play size={24} fill="currentColor" strokeWidth={0} />
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -124,7 +213,21 @@ function ProjectCard({
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   PROJECTS SECTION
+   ═══════════════════════════════════════════════════════════ */
+
 export default function ProjectsSection() {
+  const [activeProject, setActiveProject] = useState<ProjectData | null>(null)
+
+  const handlePlay = useCallback((project: ProjectData) => {
+    setActiveProject(project)
+  }, [])
+
+  const handleClose = useCallback(() => {
+    setActiveProject(null)
+  }, [])
+
   return (
     <section
       id="projects"
@@ -170,9 +273,20 @@ export default function ProjectsSection() {
             project={project}
             index={i}
             totalCards={PROJECTS.length}
+            onPlay={handlePlay}
           />
         ))}
       </div>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {activeProject && (
+          <VideoModal
+            project={activeProject}
+            onClose={handleClose}
+          />
+        )}
+      </AnimatePresence>
 
       <style>{`
         .projects-section {
@@ -389,7 +503,7 @@ export default function ProjectsSection() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(0, 0, 0, 0.15);
+          background: rgba(0, 0, 0, 0.2);
           opacity: 0;
           transition: opacity 0.3s ease;
         }
@@ -397,21 +511,112 @@ export default function ProjectsSection() {
           opacity: 1;
         }
         .project-play-icon {
-          width: 60px;
-          height: 60px;
+          width: 64px;
+          height: 64px;
           border-radius: 50%;
           background: rgba(168, 85, 247, 0.85);
           backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
           display: flex;
           align-items: center;
           justify-content: center;
           color: #fff;
-          box-shadow: 0 4px 30px rgba(168, 85, 247, 0.4);
+          box-shadow: 0 4px 30px rgba(168, 85, 247, 0.4), 0 0 60px rgba(168, 85, 247, 0.15);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .project-thumbnail:hover .project-play-icon {
           transform: scale(1.1);
-          box-shadow: 0 4px 40px rgba(168, 85, 247, 0.6);
+          box-shadow: 0 4px 40px rgba(168, 85, 247, 0.6), 0 0 80px rgba(168, 85, 247, 0.2);
+        }
+
+        /* ═══════════════════════════════════════════════════════════
+           VIDEO MODAL
+           ═══════════════════════════════════════════════════════════ */
+
+        .video-modal-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 1000;
+          background: rgba(5, 5, 5, 0.92);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 40px;
+        }
+
+        .video-modal-close {
+          position: absolute;
+          top: 24px;
+          right: 24px;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: rgba(255, 255, 255, 0.06);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          z-index: 10;
+        }
+        .video-modal-close:hover {
+          background: rgba(168, 85, 247, 0.2);
+          border-color: rgba(168, 85, 247, 0.4);
+          box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+        }
+
+        .video-modal-title {
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
+          margin-bottom: 20px;
+        }
+        .video-modal-num {
+          font-family: 'Kanit', sans-serif;
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #A855F7;
+          letter-spacing: 0.1em;
+        }
+        .video-modal-name {
+          font-family: 'Kanit', sans-serif;
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #fff;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        .video-modal-container {
+          width: 100%;
+          max-width: 1000px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 1px solid rgba(168, 85, 247, 0.15);
+          box-shadow:
+            0 0 0 1px rgba(168, 85, 247, 0.06),
+            0 20px 80px rgba(0, 0, 0, 0.6),
+            0 0 120px rgba(168, 85, 247, 0.08);
+          background: #0a0a0a;
+        }
+
+        .video-modal-player {
+          width: 100%;
+          display: block;
+          aspect-ratio: 16 / 9;
+          object-fit: contain;
+          background: #000;
+          outline: none;
+        }
+
+        /* Custom video controls colors */
+        .video-modal-player::-webkit-media-controls-panel {
+          background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
         }
 
         /* ── Responsive ── */
@@ -441,6 +646,12 @@ export default function ProjectsSection() {
           }
           .project-thumbnail {
             min-height: 250px;
+          }
+          .video-modal-backdrop {
+            padding: 20px;
+          }
+          .video-modal-container {
+            border-radius: 14px;
           }
         }
 
@@ -480,6 +691,18 @@ export default function ProjectsSection() {
           .project-play-icon {
             width: 48px;
             height: 48px;
+          }
+          .video-modal-backdrop {
+            padding: 12px;
+          }
+          .video-modal-container {
+            border-radius: 10px;
+          }
+          .video-modal-title {
+            margin-bottom: 12px;
+          }
+          .video-modal-name {
+            font-size: 1rem;
           }
         }
       `}</style>
