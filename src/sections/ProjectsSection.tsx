@@ -3,8 +3,8 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import FadeIn from '../components/FadeIn'
 import { ExternalLink } from 'lucide-react'
 import dreamfirm1 from '../photos/dreamfirm1.jpeg'
-import Kustardstory from '../photos/Kustard_story.jpeg'
-import coffee_brand from '../photos/coffee .jpeg'
+import kustard_story from '../photos/kustard_story.jpeg'
+import coffee from '../photos/coffee.jpeg'
 interface ProjectData {
   num: string
   category: string
@@ -29,7 +29,7 @@ const PROJECTS: ProjectData[] = [
     name: 'Kustard story.final',
     description: 'Immersive digital storytelling through beautiful visuals.',
     videoUrl: 'https://drive.google.com/file/d/1tFr491rL579t8cb72D6DycJE1TXqLhEJ/view?usp=drive_link',
-    thumbnail: Kustardstory,
+    thumbnail: kustard_story,
   },
   {
     num: '03',
@@ -37,7 +37,7 @@ const PROJECTS: ProjectData[] = [
     name: 'Copy of Roasted Coffee ',
     description: 'Copy of Roasted Coffee shoot.',
     videoUrl: 'https://drive.google.com/file/d/1TiWO9E1VziU7GuI24TgnTgSC5B_i-5GO/view?usp=drive_link',
-    thumbnail: coffee_brand,
+    thumbnail: coffee,
   },
 ]
 
