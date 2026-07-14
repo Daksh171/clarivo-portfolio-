@@ -21,7 +21,7 @@ const PROJECTS: ProjectData[] = [
     category: 'Client Project',
     name: 'CA Dreamfirm',
     description: '',
-    videoSrc: '/videos/CA_Dreamfirm.mp4',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054192/CA_Dreamfirm_njgzne.mp4',
     thumbnail: dreamfirm1,
   },
   {
@@ -29,7 +29,7 @@ const PROJECTS: ProjectData[] = [
     category: 'Personal Project',
     name: 'Kustard story.final',
     description: 'Immersive digital storytelling through beautiful visuals.',
-    videoSrc: '/videos/Kustard_story.final.mp4',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054887/Kustard_story.final_1_djle8z.mp4',
     thumbnail: kustard_story,
   },
   {
@@ -37,7 +37,7 @@ const PROJECTS: ProjectData[] = [
     category: 'Brand Project',
     name: 'Roasted Coffee',
     description: 'Roasted Coffee shoot.',
-    videoSrc: '/videos/Roasted_Coffee_shoot.mp4',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054538/Roasted_Coffee_shoot_dwbczb.mp4',
     thumbnail: coffee,
   },
 ]
