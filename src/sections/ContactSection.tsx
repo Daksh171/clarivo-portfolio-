@@ -53,7 +53,7 @@ const CONTACTS: ContactItem[] = [
     icon: Link2,
     label: 'LinkedIn',
     value: 'Clarivo',
-    href: 'https://linkedin.com/company/clarivo',
+    href: 'https://www.linkedin.com/company/clarivobusiness',
     actionType: 'open',
     actionLabel: 'Open',
   },

@@ -55,7 +55,7 @@ export default function Navbar() {
         <ul className="navbar-links">
           {NAV_LINKS.map((link) => (
             <li key={link} className="navbar-link-item">
-              <Magnet padding={60} strength={5}>
+              <Magnet padding={40} strength={5}>
                 <a
                   href={`#${link.toLowerCase()}`}
                   className={`navbar-link ${activeLink === link ? 'active' : ''}`}

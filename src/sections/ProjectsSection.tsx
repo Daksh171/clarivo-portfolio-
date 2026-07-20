@@ -5,7 +5,7 @@ import { Play, X } from 'lucide-react'
 import dreamfirm1 from '../photos/dreamfirm1.jpeg'
 import kustard_story from '../photos/kustard_story.jpeg'
 import coffee from '../photos/coffee.jpeg'
-
+import manali_product from '../photos/manali_product.jpeg'
 interface ProjectData {
   num: string
   category: string
@@ -27,7 +27,7 @@ const PROJECTS: ProjectData[] = [
   {
     num: '02',
     category: 'Personal Project',
-    name: 'Kustard story.final',
+    name: 'Kustard story',
     description: 'Immersive digital storytelling through beautiful visuals.',
     videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054887/Kustard_story.final_1_djle8z.mp4',
     thumbnail: kustard_story,
@@ -40,6 +40,30 @@ const PROJECTS: ProjectData[] = [
     videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054538/Roasted_Coffee_shoot_dwbczb.mp4',
     thumbnail: coffee,
   },
+  {
+    num: '04',
+    category: 'Client Project',
+    name: 'Manali Product Manager',
+    description: '',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784587039/Manali_Product_Manager_wgp7qs.mp4',
+    thumbnail: manali_product,
+  },
+  {
+    num: '05',
+    category: 'Demo Project',
+    name: 'Mystic Tales Edit',
+    description: '',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784587979/Mystic_Tales_Edit_1_e9eubc.mp4',
+    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784588120/WhatsApp_Image_2026-07-21_at_4.24.51_AM_snyq0b.jpg',
+  },
+  {
+    num: '06',
+    category: 'Client Project',
+    name: 'Scaling Tales podcast',
+    description: '',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784588285/Scaling_Tales_podcast_1_rgw7rb.mp4',
+    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784588311/WhatsApp_Image_2026-07-21_at_4.28.11_AM_gjtptz.jpg'
+  }
 ]
 
 /* ═══════════════════════════════════════════════════════════
