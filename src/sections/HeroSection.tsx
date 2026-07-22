@@ -2,6 +2,8 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import gsap from 'gsap'
 
+const SHOWREEL_URL = 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721927/01._Preview_Full_HD_2_etzm6c.mp4'
+
 /* ─────────────────────── Constants ─────────────────────── */
 
 const POLAROID_IMAGES = [
@@ -320,6 +322,8 @@ export default function HeroSection() {
   const subtitleRef = useRef<HTMLDivElement>(null)
   const [polaroids, setPolaroids] = useState<Polaroid[]>([])
   const polaroidCounter = useRef(0)
+  const [showShowreel, setShowShowreel] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   /* Mouse tracking for parallax */
   const mouseX = useMotionValue(0.5)
@@ -504,6 +508,7 @@ export default function HeroSection() {
               className="hero-cta-btn hero-cta-secondary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
+              onClick={() => setShowShowreel(true)}
             >
               <span>PLAY SHOWREEL</span>
               <div className="hero-play-icon">
@@ -541,6 +546,54 @@ export default function HeroSection() {
             animate={{ opacity: [0, 0.6, 0] }}
             transition={{ duration: 0.25 }}
           />
+        )}
+      </AnimatePresence>
+
+      {/* ── Showreel Video Modal ── */}
+      <AnimatePresence>
+        {showShowreel && (
+          <motion.div
+            className="showreel-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+            onClick={() => setShowShowreel(false)}
+            onKeyDown={(e) => { if (e.key === 'Escape') setShowShowreel(false) }}
+            tabIndex={-1}
+            ref={(el) => el?.focus()}
+          >
+            <motion.div
+              className="showreel-modal"
+              initial={{ scale: 0.85, opacity: 0, y: 40 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 30 }}
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                className="showreel-close"
+                onClick={() => setShowShowreel(false)}
+                aria-label="Close showreel"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </button>
+
+              {/* Video player */}
+              <video
+                ref={videoRef}
+                className="showreel-video"
+                src={SHOWREEL_URL}
+                controls
+                autoPlay
+                playsInline
+                onEnded={() => setShowShowreel(false)}
+              />
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </section>

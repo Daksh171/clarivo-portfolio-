@@ -18,12 +18,13 @@ interface ProjectData {
 const PROJECTS: ProjectData[] = [
   {
     num: '01',
-    category: 'Client Project',
-    name: 'CA Dreamfirm',
+    category: 'Demo Project',
+    name: 'financial',
     description: '',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054192/CA_Dreamfirm_njgzne.mp4',
-    thumbnail: dreamfirm1,
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721082/financials_249edit_z95sth.mp4',
+    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784723122/WhatsApp_Image_2026-07-22_at_5.55.01_PM_ojnfzc.jpg',
   },
+
   {
     num: '02',
     category: 'Personal Project',
@@ -34,6 +35,14 @@ const PROJECTS: ProjectData[] = [
   },
   {
     num: '03',
+    category: 'Client Project',
+    name: ' How to make viral videos',
+    description: '',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721272/short_full_sample_1_yy4ss1.mp4',
+    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784721522/WhatsApp_Image_2026-07-22_at_5.28.21_PM_tqkzjh.jpg'
+  },
+  {
+    num: '04',
     category: 'Brand Project',
     name: 'Roasted Coffee',
     description: 'Roasted Coffee shoot.',
@@ -41,29 +50,23 @@ const PROJECTS: ProjectData[] = [
     thumbnail: coffee,
   },
   {
-    num: '04',
-    category: 'Client Project',
-    name: 'Manali Product Manager',
-    description: '',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784587039/Manali_Product_Manager_wgp7qs.mp4',
-    thumbnail: manali_product,
-  },
-  {
     num: '05',
-    category: 'Demo Project',
-    name: 'Mystic Tales Edit',
+    category: 'Client Project',
+    name: 'Teach marketing video ',
     description: '',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784587979/Mystic_Tales_Edit_1_e9eubc.mp4',
-    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784588120/WhatsApp_Image_2026-07-21_at_4.24.51_AM_snyq0b.jpg',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721974/WEP_GIG_249EDIT_kjkakq.mp4',
+    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784722122/WhatsApp_Image_2026-07-22_at_5.38.23_PM_vnzpbg.jpg',
   },
+  ,
+
   {
     num: '06',
     category: 'Client Project',
-    name: 'Scaling Tales podcast',
+    name: 'Airsoft',
     description: '',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784588285/Scaling_Tales_podcast_1_rgw7rb.mp4',
-    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784588311/WhatsApp_Image_2026-07-21_at_4.28.11_AM_gjtptz.jpg'
-  }
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784724089/20_AIRSOFT_fails_249edit_1_1_hxh7y3.mp4',
+    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784724357/WhatsApp_Image_2026-07-22_at_6.15.33_PM_c14pxg.jpg',
+  },
 ]
 
 /* ═══════════════════════════════════════════════════════════

@@ -64,7 +64,7 @@ export default function App() {
       <AboutSection />
       <ServicesSection />
       <ProjectsSection />
-      <h1> i dont know</h1>
+
       <ContactSection />
     </div>
   )
