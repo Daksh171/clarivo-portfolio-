@@ -1,12 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
-import { Mail, Phone, Camera, Link2, Globe, X } from 'lucide-react'
+import { Mail, Phone, X } from 'lucide-react'
 
 const contacts = [
   { icon: Mail, label: 'Email', value: 'clarivo.businesses@gmail.com', href: 'mailto:clarivo.businesses@gmail.com' },
   { icon: Phone, label: 'Phone', value: '+91 7977178830', href: 'tel:+917977178830' },
-  { icon: Camera, label: 'Instagram', value: '@clarivobuisness', href: 'https://instagram.com/clarivobuisness' },
-  { icon: Link2, label: 'LinkedIn', value: 'Clarivo', href: 'https://linkedin.com/company/clarivo' },
-  { icon: Globe, label: 'Facebook', value: 'Clarivo Businesses', href: 'https://facebook.com/clarivobusinesses' },
 ]
 
 export default function ContactButton() {

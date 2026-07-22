@@ -3,15 +3,9 @@ import { motion } from 'framer-motion'
 import {
   Mail,
   Phone,
-  Camera,
-  Link2,
-  Globe,
   Copy,
   PhoneCall,
-  ExternalLink,
   Check,
-  Calendar,
-  ArrowRight,
 } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
 
@@ -20,7 +14,7 @@ interface ContactItem {
   label: string
   value: string
   href: string
-  actionType: 'copy' | 'call' | 'open'
+  actionType: 'copy' | 'call'
   actionLabel: string
 }
 
@@ -41,37 +35,13 @@ const CONTACTS: ContactItem[] = [
     actionType: 'call',
     actionLabel: 'Call',
   },
-  {
-    icon: Camera,
-    label: 'Instagram',
-    value: '@clarivobuisness',
-    href: 'https://instagram.com/clarivobuisness',
-    actionType: 'open',
-    actionLabel: 'Open',
-  },
-  {
-    icon: Link2,
-    label: 'LinkedIn',
-    value: 'Clarivo',
-    href: 'https://www.linkedin.com/company/clarivobusiness',
-    actionType: 'open',
-    actionLabel: 'Open',
-  },
-  {
-    icon: Globe,
-    label: 'Facebook',
-    value: 'Clarivo Businesses',
-    href: 'https://facebook.com/clarivobusinesses',
-    actionType: 'open',
-    actionLabel: 'Open',
-  },
 ]
 
 function ContactCard({ item, index }: { item: ContactItem; index: number }) {
   const [copied, setCopied] = useState(false)
 
   const ActionIcon =
-    item.actionType === 'copy' ? Copy : item.actionType === 'call' ? PhoneCall : ExternalLink
+    item.actionType === 'copy' ? Copy : PhoneCall
 
   const handleAction = (e: React.MouseEvent) => {
     if (item.actionType === 'copy') {
@@ -86,8 +56,6 @@ function ContactCard({ item, index }: { item: ContactItem; index: number }) {
   return (
     <motion.a
       href={item.href}
-      target={item.actionType === 'open' ? '_blank' : undefined}
-      rel={item.actionType === 'open' ? 'noopener noreferrer' : undefined}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -159,32 +127,7 @@ export default function ContactSection() {
               ))}
             </div>
 
-            {/* Divider */}
-            <div className="contact-divider" />
 
-            {/* Schedule CTA */}
-            <motion.a
-              href="mailto:clarivo.businesses@gmail.com?subject=Schedule%20a%20Meeting"
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="contact-cta group"
-            >
-              <div className="contact-cta-icon">
-                <Calendar size={22} strokeWidth={1.8} />
-              </div>
-              <div className="contact-cta-text">
-                <span className="contact-cta-title">Schedule a Meeting</span>
-                <span className="contact-cta-desc">Book a time that works for you</span>
-              </div>
-              <div className="contact-cta-arrow">
-                <ArrowRight
-                  size={20}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                />
-              </div>
-            </motion.a>
           </div>
         </FadeIn>
       </div>
@@ -369,92 +312,7 @@ export default function ContactSection() {
           border-color: rgba(168, 85, 247, 0.35);
         }
 
-        /* Divider */
-        .contact-divider {
-          height: 1px;
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(168, 85, 247, 0.2) 50%,
-            transparent 100%
-          );
-          margin: 8px 20px;
-        }
 
-        /* Schedule CTA */
-        .contact-cta {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          padding: 18px 20px;
-          margin: 4px;
-          border-radius: 20px;
-          background: linear-gradient(135deg, rgba(118, 33, 176, 0.15) 0%, rgba(182, 0, 168, 0.1) 100%);
-          border: 1px solid rgba(168, 85, 247, 0.15);
-          cursor: pointer;
-          text-decoration: none;
-          transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-          position: relative;
-          overflow: hidden;
-        }
-        .contact-cta::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 20px;
-          background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(182, 0, 168, 0.08) 100%);
-          opacity: 0;
-          transition: opacity 0.3s;
-        }
-        .contact-cta:hover::before {
-          opacity: 1;
-        }
-        .contact-cta:hover {
-          border-color: rgba(168, 85, 247, 0.3);
-          box-shadow: 0 0 30px rgba(168, 85, 247, 0.1);
-          transform: translateY(-1px);
-        }
-
-        .contact-cta-icon {
-          width: 44px;
-          height: 44px;
-          border-radius: 14px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(135deg, #7621B0 0%, #B600A8 100%);
-          color: white;
-          flex-shrink: 0;
-          position: relative;
-          z-index: 1;
-        }
-
-        .contact-cta-text {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          z-index: 1;
-        }
-        .contact-cta-title {
-          font-size: 1rem;
-          font-weight: 600;
-          color: #D7E2EA;
-          transition: color 0.2s;
-        }
-        .contact-cta:hover .contact-cta-title {
-          color: #fff;
-        }
-        .contact-cta-desc {
-          font-size: 0.8rem;
-          color: rgba(215, 226, 234, 0.4);
-        }
-
-        .contact-cta-arrow {
-          color: #A855F7;
-          position: relative;
-          z-index: 1;
-        }
 
         /* Mobile adjustments */
         @media (max-width: 640px) {
@@ -481,15 +339,6 @@ export default function ContactSection() {
             transform: translateX(0);
             padding: 6px 10px;
             font-size: 0.72rem;
-          }
-          .contact-cta {
-            padding: 14px;
-            gap: 12px;
-          }
-          .contact-cta-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
           }
         }
       `}</style>
