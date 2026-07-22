@@ -2,10 +2,10 @@ import { useRef, useState, useCallback, useEffect } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import FadeIn from '../components/FadeIn'
 import { Play, X } from 'lucide-react'
-import dreamfirm1 from '../photos/dreamfirm1.jpeg'
+
 import kustard_story from '../photos/kustard_story.jpeg'
 import coffee from '../photos/coffee.jpeg'
-import manali_product from '../photos/manali_product.jpeg'
+
 interface ProjectData {
   num: string
   category: string
