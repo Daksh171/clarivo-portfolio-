@@ -20,7 +20,7 @@ const PROJECTS: ProjectData[] = [
     num: '01',
     category: 'Demo Project',
     name: 'financial',
-    description: '',
+    description: 'finacial video',
     videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721082/financials_249edit_z95sth.mp4',
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784723122/WhatsApp_Image_2026-07-22_at_5.55.01_PM_ojnfzc.jpg',
   },
@@ -37,7 +37,7 @@ const PROJECTS: ProjectData[] = [
     num: '03',
     category: 'Client Project',
     name: ' How to make viral videos',
-    description: '',
+    description: 'viral videos',
     videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721272/short_full_sample_1_yy4ss1.mp4',
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784721522/WhatsApp_Image_2026-07-22_at_5.28.21_PM_tqkzjh.jpg'
   },
@@ -53,12 +53,10 @@ const PROJECTS: ProjectData[] = [
     num: '05',
     category: 'Client Project',
     name: 'Teach marketing video ',
-    description: '',
+    description: 'a teach video',
     videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721974/WEP_GIG_249EDIT_kjkakq.mp4',
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784722122/WhatsApp_Image_2026-07-22_at_5.38.23_PM_vnzpbg.jpg',
   },
-  ,
-
   {
     num: '06',
     category: 'Client Project',
@@ -66,7 +64,7 @@ const PROJECTS: ProjectData[] = [
     description: '',
     videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784724089/20_AIRSOFT_fails_249edit_1_1_hxh7y3.mp4',
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784724357/WhatsApp_Image_2026-07-22_at_6.15.33_PM_c14pxg.jpg',
-  },
+  }
 ]
 
 /* ═══════════════════════════════════════════════════════════
