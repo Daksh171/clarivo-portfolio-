@@ -16,17 +16,9 @@ interface ProjectData {
 }
 
 const PROJECTS: ProjectData[] = [
-  {
-    num: '01',
-    category: 'Demo Project',
-    name: 'financial',
-    description: 'finacial video',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721082/financials_249edit_z95sth.mp4',
-    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784723122/WhatsApp_Image_2026-07-22_at_5.55.01_PM_ojnfzc.jpg',
-  },
 
   {
-    num: '02',
+    num: '01',
     category: 'Personal Project',
     name: 'Kustard story',
     description: 'Immersive digital storytelling through beautiful visuals.',
@@ -34,7 +26,7 @@ const PROJECTS: ProjectData[] = [
     thumbnail: kustard_story,
   },
   {
-    num: '03',
+    num: '02',
     category: 'Client Project',
     name: ' How to make viral videos',
     description: 'viral videos',
@@ -42,7 +34,7 @@ const PROJECTS: ProjectData[] = [
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784721522/WhatsApp_Image_2026-07-22_at_5.28.21_PM_tqkzjh.jpg'
   },
   {
-    num: '04',
+    num: '03',
     category: 'Brand Project',
     name: 'Roasted Coffee',
     description: 'Roasted Coffee shoot.',
@@ -50,7 +42,7 @@ const PROJECTS: ProjectData[] = [
     thumbnail: coffee,
   },
   {
-    num: '05',
+    num: '04',
     category: 'Client Project',
     name: 'Teach marketing video ',
     description: 'a teach video',
@@ -58,7 +50,7 @@ const PROJECTS: ProjectData[] = [
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784722122/WhatsApp_Image_2026-07-22_at_5.38.23_PM_vnzpbg.jpg',
   },
   {
-    num: '06',
+    num: '05',
     category: 'Client Project',
     name: 'Airsoft',
     description: '',
