@@ -220,6 +220,13 @@ body,
   padding: 8px 24px 20px;
   overflow: hidden;
   border-radius: 0 0 28px 28px;
+  background: rgba(14, 14, 17, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: none;
+  margin: 0 -1px;
+  width: calc(100% + 2px);
 }
 
 .navbar-mobile-link {
@@ -249,6 +256,11 @@ body,
   .navbar-glass {
     width: calc(100% - 32px);
     border-radius: 28px;
+    overflow: visible;
+  }
+
+  .navbar-inner {
+    border-radius: 28px;
     overflow: hidden;
   }
 
@@ -275,14 +287,17 @@ body,
     width: calc(100% - 20px);
     top: 8px;
     border-radius: 20px;
+    overflow: visible;
   }
 
   .navbar-inner {
     padding: 10px 16px;
+    border-radius: 20px;
   }
 
   .navbar-mobile-menu {
     padding: 6px 16px 16px;
+    border-radius: 0 0 20px 20px;
   }
 }
 
