@@ -19,14 +19,6 @@ const PROJECTS: ProjectData[] = [
 
   {
     num: '01',
-    category: 'Personal Project',
-    name: 'Kustard story',
-    description: 'Immersive digital storytelling through beautiful visuals.',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054887/Kustard_story.final_1_djle8z.mp4',
-    thumbnail: kustard_story,
-  },
-  {
-    num: '02',
     category: 'Client Project',
     name: ' How to make viral videos',
     description: 'viral videos',
@@ -34,7 +26,7 @@ const PROJECTS: ProjectData[] = [
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784721522/WhatsApp_Image_2026-07-22_at_5.28.21_PM_tqkzjh.jpg'
   },
   {
-    num: '03',
+    num: '02',
     category: 'Brand Project',
     name: 'Roasted Coffee',
     description: 'Roasted Coffee shoot.',
@@ -42,7 +34,7 @@ const PROJECTS: ProjectData[] = [
     thumbnail: coffee,
   },
   {
-    num: '04',
+    num: '03',
     category: 'Client Project',
     name: 'Teach marketing video ',
     description: 'a teach video',
@@ -50,12 +42,20 @@ const PROJECTS: ProjectData[] = [
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784722122/WhatsApp_Image_2026-07-22_at_5.38.23_PM_vnzpbg.jpg',
   },
   {
-    num: '05',
+    num: '04',
     category: 'Client Project',
     name: 'Airsoft',
     description: '',
     videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784724089/20_AIRSOFT_fails_249edit_1_1_hxh7y3.mp4',
     thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784724357/WhatsApp_Image_2026-07-22_at_6.15.33_PM_c14pxg.jpg',
+  },
+  {
+    num: '05',
+    category: 'Personal Project',
+    name: 'Kustard story',
+    description: 'Immersive digital storytelling through beautiful visuals.',
+    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054887/Kustard_story.final_1_djle8z.mp4',
+    thumbnail: kustard_story,
   }
 ]
 
