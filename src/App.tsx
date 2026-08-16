@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -9,30 +10,14 @@ import AboutSection from './sections/AboutSection'
 import ServicesSection from './sections/ServicesSection'
 import ProjectsSection from './sections/ProjectsSection'
 import ContactSection from './sections/ContactSection'
+import ALLProjectsPage from './pages/ALLProjectsPage'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function App() {
-  const lenisRef = useRef<Lenis | null>(null)
-
+/* ── Homepage — preserves existing layout exactly ── */
+function HomePage() {
   useEffect(() => {
-    /* ── Lenis Smooth Scroll ── */
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 2,
-    })
-    lenisRef.current = lenis
-
-    // Connect Lenis to GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update)
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000)
-    })
-    gsap.ticker.lagSmoothing(0)
-
-    /* ── Hero scroll fade-out ── */
+    /* Hero scroll fade-out */
     const heroEl = document.getElementById('hero')
     if (heroEl) {
       ScrollTrigger.create({
@@ -51,6 +36,48 @@ export default function App() {
     }
 
     return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill())
+    }
+  }, [])
+
+  return (
+    <>
+      <HeroSection />
+      <AboutSection />
+      <ServicesSection />
+      <ProjectsSection />
+      <ContactSection />
+    </>
+  )
+}
+
+export default function App() {
+  const lenisRef = useRef<Lenis | null>(null)
+  const { pathname } = useLocation()
+
+  /* Scroll to top on route change */
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  useEffect(() => {
+    /* ── Lenis Smooth Scroll ── */
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      touchMultiplier: 2,
+    })
+    lenisRef.current = lenis
+
+    // Connect Lenis to GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update)
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000)
+    })
+    gsap.ticker.lagSmoothing(0)
+
+    return () => {
       lenis.destroy()
       ScrollTrigger.getAll().forEach((t) => t.kill())
     }
@@ -59,13 +86,10 @@ export default function App() {
   return (
     <div className="bg-[#050505]" style={{ overflowX: 'clip' }}>
       <Navbar />
-      <HeroSection />
-
-      <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
-
-      <ContactSection />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/ALLProjects" element={<ALLProjectsPage />} />
+      </Routes>
     </div>
   )
 }

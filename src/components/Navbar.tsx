@@ -1,14 +1,19 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 import Magnet from './Magnet'
 
-const NAV_LINKS = ['About', 'Services', 'Projects', 'Contact']
+const NAV_LINKS = ['About', 'Services', 'Projects', 'Contact',]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [activeLink, setActiveLink] = useState('')
   const [mobileOpen, setMobileOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
+
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isHomePage = location.pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -33,31 +38,70 @@ export default function Navbar() {
     }
   }, [mobileOpen])
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [location.pathname])
+
   const handleNavClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
       e.preventDefault()
       e.stopPropagation()
       setMobileOpen(false)
-      const target = document.getElementById(link.toLowerCase())
-      if (target) {
-        // Small delay to let the menu close animation start, then scroll
+
+      if (isHomePage) {
+        // On homepage — scroll to the section
+        const target = document.getElementById(link.toLowerCase())
+        if (target) {
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth' })
+          }, 100)
+        }
+      } else {
+        // On other pages — navigate home, then scroll
+        navigate('/')
         setTimeout(() => {
-          target.scrollIntoView({ behavior: 'smooth' })
-        }, 100)
+          const target = document.getElementById(link.toLowerCase())
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 300)
       }
     },
-    [],
+    [isHomePage, navigate],
   )
 
   const handleLetsTalk = useCallback(() => {
     setMobileOpen(false)
-    const contact = document.getElementById('contact')
-    if (contact) {
+    if (isHomePage) {
+      const contact = document.getElementById('contact')
+      if (contact) {
+        setTimeout(() => {
+          contact.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
+      }
+    } else {
+      navigate('/')
       setTimeout(() => {
-        contact.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
+        const contact = document.getElementById('contact')
+        if (contact) {
+          contact.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 300)
     }
-  }, [])
+  }, [isHomePage, navigate])
+
+  const handleLogoClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault()
+      if (isHomePage) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else {
+        navigate('/')
+      }
+    },
+    [isHomePage, navigate],
+  )
 
   const toggleMobile = useCallback((e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault()
@@ -75,10 +119,7 @@ export default function Navbar() {
     >
       <div className="navbar-inner">
         {/* Logo */}
-        <a href="#hero" className="navbar-logo" onClick={(e) => {
-          e.preventDefault()
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        }}>
+        <a href="/" className="navbar-logo" onClick={handleLogoClick}>
           CLARIVO
         </a>
 
@@ -100,6 +141,20 @@ export default function Navbar() {
               </Magnet>
             </li>
           ))}
+          {/* All Projects — dedicated route link */}
+          <li className="navbar-link-item">
+            <Magnet padding={40} strength={5}>
+              <Link
+                to="/ALLProjects"
+                className={`navbar-link ${location.pathname === '/ALLProjects' ? 'active' : ''}`}
+                onMouseEnter={() => setActiveLink('AllProjects')}
+                onMouseLeave={() => setActiveLink('')}
+              >
+                <span className="navbar-link-dot" />
+                <span className="navbar-link-text">All Projects</span>
+              </Link>
+            </Magnet>
+          </li>
         </ul>
 
         {/* CTA Button */}
@@ -147,6 +202,14 @@ export default function Navbar() {
             {link}
           </a>
         ))}
+        {/* All Projects — dedicated route link */}
+        <Link
+          to="/ALLProjects"
+          className="navbar-mobile-link"
+          onClick={() => setMobileOpen(false)}
+        >
+          All Projects
+        </Link>
         <button
           className="navbar-cta navbar-mobile-cta"
           onClick={handleLetsTalk}

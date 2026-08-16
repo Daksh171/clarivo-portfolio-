@@ -1,10 +1,9 @@
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
 import { Play, X } from 'lucide-react'
-
-import kustard_story from '../photos/kustard_story.jpeg'
-import coffee from '../photos/coffee.jpeg'
+import { ALL_PROJECTS } from '../data/projectsData'
 
 interface ProjectData {
   num: string
@@ -15,55 +14,21 @@ interface ProjectData {
   thumbnail: string
 }
 
-const PROJECTS: ProjectData[] = [
-
-  {
-    num: '01',
-    category: 'Client Project',
-    name: ' How to make viral videos',
-    description: 'viral videos',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721272/short_full_sample_1_yy4ss1.mp4',
-    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784721522/WhatsApp_Image_2026-07-22_at_5.28.21_PM_tqkzjh.jpg'
-  },
-  {
-    num: '02',
-    category: 'Brand Project',
-    name: 'Roasted Coffee',
-    description: 'Roasted Coffee shoot.',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054538/Roasted_Coffee_shoot_dwbczb.mp4',
-    thumbnail: coffee,
-  },
-  {
-    num: '03',
-    category: 'Client Project',
-    name: 'Teach marketing video ',
-    description: 'a teach video',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721974/WEP_GIG_249EDIT_kjkakq.mp4',
-    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784722122/WhatsApp_Image_2026-07-22_at_5.38.23_PM_vnzpbg.jpg',
-  },
-  {
-    num: '04',
-    category: 'Client Project',
-    name: 'Airsoft',
-    description: '',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784724089/20_AIRSOFT_fails_249edit_1_1_hxh7y3.mp4',
-    thumbnail: 'https://res.cloudinary.com/zrwhcw4t/image/upload/v1784724357/WhatsApp_Image_2026-07-22_at_6.15.33_PM_c14pxg.jpg',
-  },
-  {
-    num: '05',
-    category: 'Personal Project',
-    name: 'Kustard story',
-    description: 'Immersive digital storytelling through beautiful visuals.',
-    videoSrc: 'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054887/Kustard_story.final_1_djle8z.mp4',
-    thumbnail: kustard_story,
-  }
-]
+/* Derive the first 5 projects from the centralized data for the homepage */
+const PROJECTS: ProjectData[] = ALL_PROJECTS.slice(0, 5).map((p) => ({
+  num: p.id,
+  category: p.category,
+  name: p.title,
+  description: p.description,
+  videoSrc: p.videoSrc,
+  thumbnail: p.image,
+}))
 
 /* ═══════════════════════════════════════════════════════════
    VIDEO MODAL — Cinematic fullscreen player
    ═══════════════════════════════════════════════════════════ */
 
-function VideoModal({
+export function VideoModal({
   project,
   onClose,
 }: {
@@ -263,7 +228,7 @@ export default function ProjectsSection() {
               and commitment to excellence.
             </p>
           </div>
-          <button className="projects-explore-btn group">
+          <Link to="/ALLProjects" className="projects-explore-btn group">
             <span>Explore all projects</span>
             <svg
               width="18"
@@ -278,7 +243,7 @@ export default function ProjectsSection() {
             >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </button>
+          </Link>
         </div>
       </FadeIn>
 
@@ -374,6 +339,7 @@ export default function ProjectsSection() {
           cursor: pointer;
           transition: all 0.3s ease;
           flex-shrink: 0;
+          text-decoration: none;
         }
         .projects-explore-btn:hover {
           border-color: #A855F7;
