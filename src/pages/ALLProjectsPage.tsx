@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Play, ArrowRight, ChevronUp } from 'lucide-react'
 import FadeIn from '../components/FadeIn'
-import { ALL_PROJECTS, type ProjectItem } from '../data/projectsData'
+import { ALL_PROJECTS, type ProjectItem } from '../data/allProjects'
 import VideoModal from '../components/VideoModal'
 import './ALLProjectsPage.css'
 

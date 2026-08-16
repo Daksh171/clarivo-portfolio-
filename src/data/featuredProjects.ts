@@ -1,4 +1,3 @@
-import kustard_story from '../photos/kustard_story.jpeg'
 import coffee from '../photos/coffee.jpeg'
 
 export interface ProjectItem {
@@ -12,10 +11,11 @@ export interface ProjectItem {
 }
 
 /**
- * Centralized project data.
- * Add new projects here — both the homepage and ALLProjects page consume this array.
+ * Homepage featured projects — curated, max 5.
+ * Edit this array to change what appears on the homepage.
+ * This does NOT affect the ALLProjects page.
  */
-export const ALL_PROJECTS: ProjectItem[] = [
+export const FEATURED_PROJECTS: ProjectItem[] = [
   {
     id: '01',
     title: 'How to Make Viral Videos',
@@ -63,17 +63,4 @@ export const ALL_PROJECTS: ProjectItem[] = [
     videoSrc:
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784724089/20_AIRSOFT_fails_249edit_1_1_hxh7y3.mp4',
   },
-  {
-    id: '05',
-    title: 'Kustard Story',
-    description:
-      'Immersive digital storytelling through beautiful visuals, weaving narrative and emotion together.',
-    category: 'Personal Project',
-    image: kustard_story,
-    slug: 'kustard-story',
-    videoSrc:
-      'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054887/Kustard_story.final_1_djle8z.mp4',
-  },
-
-
 ]

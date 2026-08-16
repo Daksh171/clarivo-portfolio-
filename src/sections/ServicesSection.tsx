@@ -39,6 +39,13 @@ const SERVICES = [
     image: '/services-content.png',
     icon: 'strategy',
   },
+  {
+    num: '05',
+    title: 'SOCIAL MEDIA MANAGEMENT',
+    desc: 'End-to-end social media management designed to grow your online presence through strategic content planning, publishing, audience engagement, and performance tracking.',
+    image: '/services-social.png',
+    icon: 'social',
+  },
 ]
 
 /* ─────────────────────── Icon Components ─────────────────────── */
@@ -86,28 +93,25 @@ function StrategyIcon() {
   )
 }
 
+function SocialMediaIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="#c084fc" strokeWidth="1.5" />
+      <circle cx="12" cy="12" r="4" stroke="#c084fc" strokeWidth="1.5" />
+      <circle cx="17.5" cy="6.5" r="1.2" fill="#c084fc" />
+    </svg>
+  )
+}
+
 const ICON_MAP: Record<string, () => React.JSX.Element> = {
   reels: ReelsIcon,
   youtube: YoutubeIcon,
   thumbnail: ThumbnailIcon,
   strategy: StrategyIcon,
+  social: SocialMediaIcon,
 }
 
-/* ─────────────────────── Arrow Icon ─────────────────────── */
 
-function ArrowRight() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <path
-        d="M4 9h10M10 5l4 4-4 4"
-        stroke="#c084fc"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
 
 /* ─────────────────────── Sparkle Icon ─────────────────────── */
 
@@ -284,7 +288,7 @@ function ServiceCard({
         <p className="services-card-desc">{service.desc}</p>
       </div>
 
-      {/* Right: Preview Image + Arrow */}
+      {/* Right: Preview Image */}
       <div className="services-card-right">
         <div className="services-preview-wrapper">
           <motion.img
@@ -297,17 +301,6 @@ function ServiceCard({
           />
           <div className="services-preview-overlay" />
         </div>
-
-        {/* Arrow Button */}
-        <motion.button
-          className="services-arrow-btn"
-          whileHover={{ x: 4 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-          aria-label={`Learn more about ${service.title}`}
-        >
-          <div className="services-arrow-glow" />
-          <ArrowRight />
-        </motion.button>
       </div>
     </motion.div>
   )

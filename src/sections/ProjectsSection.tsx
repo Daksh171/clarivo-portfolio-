@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import FadeIn from '../components/FadeIn'
 import VideoModal from '../components/VideoModal'
 import { Play } from 'lucide-react'
-import { ALL_PROJECTS } from '../data/projectsData'
+import { FEATURED_PROJECTS } from '../data/featuredProjects'
 
 interface ProjectData {
   num: string
@@ -15,8 +15,8 @@ interface ProjectData {
   thumbnail: string
 }
 
-/* Derive the first 5 projects from the centralized data for the homepage */
-const PROJECTS: ProjectData[] = ALL_PROJECTS.slice(0, 5).map((p) => ({
+/* Map featured projects to the card's expected shape */
+const PROJECTS: ProjectData[] = FEATURED_PROJECTS.map((p) => ({
   num: p.id,
   category: p.category,
   name: p.title,

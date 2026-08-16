@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import HeroSection from './sections/HeroSection'
 // import MarqueeSection from './sections/MarqueeSection'
 import AboutSection from './sections/AboutSection'
+import ByTheNumbersSection from './sections/ByTheNumbersSection'
 import ServicesSection from './sections/ServicesSection'
 import ProjectsSection from './sections/ProjectsSection'
 import ContactSection from './sections/ContactSection'
@@ -43,9 +44,10 @@ function HomePage() {
   return (
     <>
       <HeroSection />
+      <ByTheNumbersSection />
       <AboutSection />
-      <ServicesSection />
       <ProjectsSection />
+      <ServicesSection />
       <ContactSection />
     </>
   )
