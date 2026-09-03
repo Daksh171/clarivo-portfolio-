@@ -18,6 +18,18 @@ export interface ProjectItem {
 export const FEATURED_PROJECTS: ProjectItem[] = [
   {
     id: '01',
+    title: 'tripati enterprice',
+    description:
+      'a small reel edit',
+    category: 'Client Project',
+    image:
+      'https://res.cloudinary.com/zrwhcw4t/image/upload/v1788447069/tripati_image_jwv5ki.jpg',
+    slug: 'tripati-enterprice',
+    videoSrc:
+      'https://res.cloudinary.com/zrwhcw4t/video/upload/v1788446741/Tripathi_vifi8q.mp4',
+  },
+  {
+    id: '02',
     title: 'How to Make Viral Videos',
     description:
       'A deep-dive into the art and science behind viral short-form content that captures millions of views.',
@@ -29,7 +41,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721272/short_full_sample_1_yy4ss1.mp4',
   },
   {
-    id: '02',
+    id: '03',
     title: 'Roasted Coffee',
     description:
       'A cinematic product shoot capturing the warmth, aroma, and craft behind every cup of roasted coffee.',
@@ -40,7 +52,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054538/Roasted_Coffee_shoot_dwbczb.mp4',
   },
   {
-    id: '03',
+    id: '04',
     title: 'Teach Marketing Video',
     description:
       'Educational marketing content designed to inform, engage, and convert viewers into action-takers.',
@@ -52,7 +64,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721974/WEP_GIG_249EDIT_kjkakq.mp4',
   },
   {
-    id: '04',
+    id: '05',
     title: 'Airsoft',
     description:
       'High-energy action edits showcasing the thrill and intensity of airsoft gameplay moments.',
