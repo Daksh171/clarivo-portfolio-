@@ -18,6 +18,18 @@ export interface ProjectItem {
 export const ALL_PROJECTS: ProjectItem[] = [
   {
     id: '01',
+    title: 'Sameer Somal Documentery',
+    description:
+      "Documentery on sameer somal ",
+    category: 'Documentery',
+    image:
+      'https://res.cloudinary.com/zrwhcw4t/image/upload/v1791370120/WhatsApp_Image_2026-10-07_at_4.18.26_PM_stl4mt.jpg',
+    slug: 'sameer-somal',
+    videoSrc:
+      'https://res.cloudinary.com/zrwhcw4t/video/upload/v1791201046/abraham_lincon_1_vqg22l.mp4',
+  },
+  {
+    id: '02',
     title: 'tripati enterprice',
     description:
       "Educational reel edit for a brand called tripati enterprice",
@@ -29,7 +41,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1788446741/Tripathi_vifi8q.mp4',
   },
   {
-    id: '02',
+    id: '03',
     title: 'How to Make Viral Videos',
     description:
       'A deep-dive into the art and science behind viral short-form content that captures millions of views.',
@@ -41,7 +53,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721272/short_full_sample_1_yy4ss1.mp4',
   },
   {
-    id: '03',
+    id: '04',
     title: 'Roasted Coffee',
     description:
       'A cinematic product shoot capturing the warmth, aroma, and craft behind every cup of roasted coffee.',
@@ -52,7 +64,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784054538/Roasted_Coffee_shoot_dwbczb.mp4',
   },
   {
-    id: '04',
+    id: '05',
     title: 'Teach Marketing Video',
     description:
       'Educational marketing content designed to inform, engage, and convert viewers into action-takers.',
@@ -64,7 +76,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784721974/WEP_GIG_249EDIT_kjkakq.mp4',
   },
   {
-    id: '05',
+    id: '06',
     title: 'Airsoft',
     description:
       'High-energy action edits showcasing the thrill and intensity of airsoft gameplay moments.',
@@ -75,6 +87,18 @@ export const ALL_PROJECTS: ProjectItem[] = [
     videoSrc:
       'https://res.cloudinary.com/zrwhcw4t/video/upload/v1784724089/20_AIRSOFT_fails_249edit_1_1_hxh7y3.mp4',
   },
+  {
+    id: '07',
+    title: 'Sameer Somal reel',
+    description:
+      "Reel on sameer somal ",
+    category: 'Reel',
+    image:
+      'https://res.cloudinary.com/zrwhcw4t/image/upload/v1791369762/WhatsApp_Image_2026-10-07_at_4.12.07_PM_aoxbsd.jpg',
+    slug: 'sameer-somal',
+    videoSrc:
+      'https://res.cloudinary.com/zrwhcw4t/image/upload/v1791369762/WhatsApp_Image_2026-10-07_at_4.12.07_PM_aoxbsd.jpg',
+  }
 
 
 ]
