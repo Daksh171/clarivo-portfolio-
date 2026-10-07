@@ -97,7 +97,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
       'https://res.cloudinary.com/zrwhcw4t/image/upload/v1791369762/WhatsApp_Image_2026-10-07_at_4.12.07_PM_aoxbsd.jpg',
     slug: 'sameer-somal',
     videoSrc:
-      'https://res.cloudinary.com/zrwhcw4t/image/upload/v1791369762/WhatsApp_Image_2026-10-07_at_4.12.07_PM_aoxbsd.jpg',
+      'https://res.cloudinary.com/zrwhcw4t/video/upload/v1791195220/sameer_somal_reel_1_jgkzno.mp4',
   }
 
 
